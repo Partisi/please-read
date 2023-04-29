@@ -1,0 +1,52 @@
+{
+    "name": "Big Brain: News Notetaker",
+    "description": "Take notes while browsing some news articles",
+    "version": "0.1.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "./assets/16icon.png",
+        "32": "./assets/32icon.png",
+        "48": "./assets/48icon.png",
+        "128": "./assets/128icon.png"
+    },
+    "background": {
+        "service_worker": "./scripts/background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.google.com/*"],
+            "js": ["./scripts/foreground.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "options_page": "options.html",
+    "action": {
+        "default_title": "Click to view a popup",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "identity",
+        "tabs",
+        "storage",
+        "cookies"
+    ],
+
+    "oauth2": {
+        "client_id": "210811878770-s0vnb8b48vqa9h6chsg1rebc3lhiudl9.apps.googleusercontent.com",
+        "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+    },
+  
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsFFkTn/XWR+bZ5GkBBskcXyq5py/swjDiJ4irNyondMKGFrM9oriPJIcNpa9Vm2520mYXBIJisDBVexfD1FNVseEwAUQ3VPuPih5ywNTfFRzVi4AIWWCBhKqJQ+81Of+4Z31Q3cM6emn/UG3cDUlM3KSwZVzghDY3DZEW2QBoF310yf5pyxhNCIjgC16qETU4vzQhp7gdsdVF3zT0z73VhubuFo6F4B5rjJd/nPTMbt0hRn3I/GsAZBi+WbYUcoPQUFOs7lY2bLQ6yvxXLTb24lx18JQznhcNOiMWlVpebxMzI9IHHce3InAN8uD3EjKLk8d79Lup31+mj7c3wIVrwIDAQAB",
+
+    "content_security_policy": {
+        "allow_list": [
+            "https://apis.google.com",
+            "https://www.gstatic.com",
+            "https://www.googleapis.com",
+            "https://securetoken.googleapis.com"
+        ]
+    }
+
+
+}

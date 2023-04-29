@@ -1,0 +1,41 @@
+
+body {
+    padding: 0;
+    margin: 0;
+
+    border: 2px solid rgb(206, 206, 206);
+}
+
+#internal-body {
+    background-color: whitesmoke;
+    padding: 24px 48px;
+    border: 1px solid rgb(153, 153, 153);
+
+    width: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#internal-body > #top-header {
+    font-size: 24px;
+}
+
+#internal-body > #action-bttns {
+    background-color: aqua;
+}
+
+button {
+    padding: 10px;
+    background-color: #3C79F8;
+}
+
+#auth-bttn {
+    display: block;
+}
+
+#logout-bttn {
+    display: none;
+}
