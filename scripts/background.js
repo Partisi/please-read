@@ -1,5 +1,45 @@
 // gets executed exactly when extension is refreshed or installed
-console.log("in background")
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js'
+
+// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js'
+
+// Add Firebase products that you want to use
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js'
+
+try {
+    // you need to manually have firebase-compat.js file in your dir
+
+
+    var config = {
+        apiKey: process.env.FIREBASE_API_KEY,
+        authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+        appId: process.env.FIREBASE_APP_ID,
+        measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+    };
+    initializeApp(config);
+    const myFirestore = getFirestore()
+    console.log(myFirestore)
+
+    const myAuth = getAuth()
+    chrome.runtime.onMessage.addListener(function (request, sender) {
+        if (request.command === "post") {
+            // in here, you can use both firebase and data from popup view
+            console.log(request.data);
+            return true;
+        }
+    });
+} catch (e) {
+    console.error(e);
+}
+
+
+
 let active_tab_id = 0
 
 // this is the background
